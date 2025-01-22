@@ -56,7 +56,7 @@ setup(
     # Requirements
     python_requires=">=3.7",
     packages=["bqt"],
-    install_requires=["PySide6", "blender-qt-stylesheet"],
+    install_requires=["QtPy", "blender-qt-stylesheet"],
     # Package Data
     include_package_data=True,
     package_data={"bqt": ["*.png", "*.qss"]},

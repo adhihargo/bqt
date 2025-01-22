@@ -7,14 +7,8 @@ from bqt_demo import hello_world
 hello_world.demo()
 """
 
-import PySide6
-
-Qt = PySide6.QtCore.Qt
-QApplication = PySide6.QtWidgets.QApplication
-QDialog = PySide6.QtWidgets.QDialog
-QHBoxLayout = PySide6.QtWidgets.QHBoxLayout
-QLabel = PySide6.QtWidgets.QLabel
-
+from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QApplication, QDialog, QHBoxLayout, QLabel
 
 class HelloWorldDialog(QDialog):
     """

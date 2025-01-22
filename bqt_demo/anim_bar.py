@@ -2,8 +2,8 @@
 from bqt_demo import anim_bar
 anim_bar.main()
 """
-from PySide6 import QtWidgets
-from PySide6.QtCore import Qt, QTimer
+from qtpy import QtWidgets
+from qtpy.QtCore import Qt, QTimer
 import bpy
 
 
