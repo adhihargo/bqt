@@ -18,10 +18,20 @@ class WINDOW_OT_SaveFileFromQt(bpy.types.Operator):
 
     def execute(self, context):
         # TODO not sure what we are doing here, Friederman?
+        context_override = {"window": bpy.context.window_manager.windows[0]}
         if context.blend_data.is_saved:
-            bpy.ops.wm.save_mainfile({"window": bpy.context.window_manager.windows[0]}, 'EXEC_AREA', check_existing=False)
+            exec_context = 'EXEC_AREA'
         else:
-            bpy.ops.wm.save_mainfile({"window": bpy.context.window_manager.windows[0]}, 'INVOKE_AREA', check_existing=False)
+            exec_context = 'INVOKE_AREA'
+
+        # passing custom context data as first operator argument is no
+        # longer supported since 4.0.
+        if bpy.app.version[:2] >= (4, 0):
+            with bpy.context.temp_override(**context_override):
+                bpy.ops.wm.save_mainfile(exec_context, check_existing=False)
+        else:
+            bpy.ops.wm.save_mainfile(context_override, exec_context, check_existing=False)
+
         # https://docs.blender.org/api/current/bpy.ops.html
         # EXEC_AREA - execute the operator in a certain context
         return {'FINISHED'}
